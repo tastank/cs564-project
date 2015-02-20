@@ -1,4 +1,4 @@
-<?php include(__DIR__."/../conf/conf.php"); ?>
+<?php include(__DIR__."/conf.php"); ?>
 <link rel="stylesheet" href="<?php echo SITE_ROOT ?>/conf/style_main.css" type="text/css" media="all" />
 
 

@@ -9,7 +9,7 @@
         ini_set('display_errors', 1);
     }
 
-    define(SITE_ROOT, "/cs564");
+    define('SITE_ROOT', '/cs564');
 
 
 ?>
