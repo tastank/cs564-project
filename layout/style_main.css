@@ -1,3 +1,6 @@
+:root {
+    --horiz-navbar-li-width: 120px;
+}
 #horiz_navbar ul {
     list-style-type: none;
     margin: 0;
@@ -8,21 +11,24 @@
 #horiz_navbar li {
     float:left;
     display:inline-block;
-    width: 120px;
+    /*width: var(--horiz_navbar_li_width); */
     background-color: #2198bf;
     font-weight: bold;
     text-align: center;
-    padding: 4px;
     text-decoration: none;
 }
 
 #horiz_navbar a {
     color: #FFFFFF;
+    /*width: var(--horiz-navbar-li-width);*/
+    width: 120px;
     text-transform: uppercase;
+    text-decoration: none;
+    padding: 8px;
 }
 
 #horiz_navbar a:hover, a:active {
-    background-color: #7A991A;
+    background-color: #1A7A99;
 }
 
 ul.vert_navbar {
