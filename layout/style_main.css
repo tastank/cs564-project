@@ -6,6 +6,7 @@
 }
 
 #horiz_navbar li {
+    float:left;
     display:inline-block;
     width: 120px;
     background-color: #2198bf;
