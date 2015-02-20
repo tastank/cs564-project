@@ -11,5 +11,9 @@
 
     define('SITE_ROOT', '/cs564');
 
+    session_start();
+
+    include (__DIR__."/user.php");
+
 
 ?>
