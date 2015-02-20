@@ -10,7 +10,14 @@
                 <ul>
                     <li><a href="">View flights</a></li>
                     <li><a href="">Scheduler</a></li>
-                    <li><a href="">Log in</a></li>
+                    <?php if (!isset($_SESSION['username'])) {
+                        ?>
+                    <li><a href="<?php echo SITE_ROOT ?>/login.php">Log in</a></li>
+                    <?php } else {
+                        ?>
+                    <li><a href="">Account</a></li>
+                    <li><a href="<?php echo SITE_ROOT ?>/logout.php">Log out</a></li>
+                    <?php } ?>
                 </ul>
             </div>
         <?php
