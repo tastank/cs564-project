@@ -1,5 +1,5 @@
 <?php
-    include(__DIR__."/conf/conf.php");
+    include(__DIR__."/conf.php");
     include(__DIR__."/layout/main.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
