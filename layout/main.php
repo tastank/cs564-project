@@ -1,5 +1,5 @@
 <?php include(__DIR__."/conf.php"); ?>
-<link rel="stylesheet" href="<?php echo SITE_ROOT ?>/conf/style_main.css" type="text/css" media="all" />
+<link rel="stylesheet" href="<?php echo SITE_ROOT ?>/layout/style_main.css" type="text/css" media="all" />
 
 
 <?php
