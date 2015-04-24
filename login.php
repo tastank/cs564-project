@@ -11,8 +11,7 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
         //SELECT password FROM Pilot WHERE username = $username;
-        $password_from_db = password_hash("alpha", PASSWORD_BCRYPT);
-
+        $password_from_db = get_password_from_db($username);
 
         if (password_verify($password, $password_from_db)) {
             echo "Login success!";
