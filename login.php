@@ -15,6 +15,7 @@
 
         if (password_verify($password, $password_from_db)) {
             echo "Login success!";
+            $_SESSION['username'] = $username;
         } else {
             echo "Login failure.";
         }
