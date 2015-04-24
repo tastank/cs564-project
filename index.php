@@ -5,6 +5,5 @@
 
     page_header("Project root");
     print_menu();
+    page_footer();
 ?>
-</body>
-</html>
