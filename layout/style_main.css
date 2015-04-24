@@ -31,6 +31,8 @@
     background-color: #1A7A99;
 }
 
-ul.vert_navbar {
-
+.pass_warning {
+    color: #FF0000;
+    font-weight: bold;
+    font-size: 24px;
 }
