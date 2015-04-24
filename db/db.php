@@ -15,7 +15,7 @@
 
     function get_password_from_db($username) {
         $password_query = "SELECT password FROM Pilot WHERE username='" . $username . "';";
-        $result = db->query($password_query);
+        $result = $db->query($password_query);
         if (!$result || $result->num_rows != 1) {
             return false;
         }
