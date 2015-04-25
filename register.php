@@ -12,6 +12,8 @@
         return false;
     }
 
+    $register_msg = "";
+
     if (isset($_POST['username'])) {
         $username = $_POST['username'];
         if (user_exists($username)) {
@@ -27,7 +29,7 @@
 
     print_menu();
 
-    printf($login_msg);
+    printf($register_msg);
 
 ?>
 
