@@ -32,6 +32,7 @@
 <div class="pass_warning">Do not use a password you would use anywhere else; it will be sent as plaintext.</div>
 
 <form method="POST" action="./login.php">
+<!--TODO: Use a table or some css to make the form look nicer-->
 Username: <input type="text" name="username" /><br />
 Password: <input type="password" name="password" />
 <input type="submit" name="submit" value="Submit" />
