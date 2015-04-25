@@ -5,6 +5,7 @@
 
     page_header("Log in");
 
+    $login_msg = "";
     if (isset($_POST['username'])) {
         //a user is trying to log in
         $username = $_POST['username'];
@@ -15,13 +16,15 @@
         if (password_verify($password, $password_from_db)) {
             //todo: replace this with a login($username) function
             $_SESSION['username'] = $username;
-            echo "Login success!";
+            $login_msg = "Login success!";
         } else {
-            echo "Login failure.";
+            $login_msg = "Login failure.";
         }
     }
 
     print_menu();
+
+    printf($login_msg);
 
 ?>
 
