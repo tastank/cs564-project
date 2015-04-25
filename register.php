@@ -9,7 +9,7 @@
 
     //placeholder
     function user_exists($username) {
-        return false;
+        return true;
     }
 
     $register_msg = "";
