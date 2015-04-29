@@ -40,7 +40,7 @@
                 //if password does match
             } else {
                 // verify no field is empty
-                if (isset($name) || isset($phone) || isset($address) || isset($username) || isset($password)) {
+                if (!isset($name) || !isset($phone) || !isset($address) || !isset($username) || !isset($password)) {
                     $register_msg = "All fields are required.";
                 } else if (create_user($username, $password, $name, $phone, $address)) {
                     $register_msg = "Account successfully created.";
