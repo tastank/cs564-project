@@ -11,7 +11,6 @@
 
     if (isset($_POST['username'])) {
         $username = $_POST['username'];
-        $username = mysqli_real_escape_string($username);
         if (user_exists($username)) {
             //cannot add duplicate users - display a message to that effect 
             register_msg = "User already exists - choose a different username.";
@@ -28,11 +27,8 @@
                 register_msg = "Password does not match verification; try again.";
             //if password does match
             } else {
-                //should verify other fields, but I'm lazy
-                $name = mysqli_real_escape_string($name);
-                $phone = mysqli_real_escape_string($phone);
-                $address = mysqli_real_escape_string($address);
-                //  insert user
+                // should verify other fields, but I'm lazy
+                // insert user
                 create_user($username, $password, $name, $phone, $address);
             }
         }
