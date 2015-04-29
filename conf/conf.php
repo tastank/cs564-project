@@ -13,10 +13,10 @@
 
     session_start();
 
-    include (__DIR__."/user.php");
-    include (__DIR__."/../layout/page.php");
-    include (__DIR__."/db.php");
-    include (__DIR__."/user.php");
+    include_once(__DIR__."/user.php");
+    include_once(__DIR__."/../layout/page.php");
+    include_once(__DIR__."/db.php");
+    include_once(__DIR__."/user.php");
 
 
 ?>
