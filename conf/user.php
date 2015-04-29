@@ -37,7 +37,7 @@
         $phone = mysqli_real_escape_string($phone);
         $address = mysqli_real_escape_string($address);
         $password = mysqli_real_escape_string($password);
-        $create_query = "INSERT INTO Pilot (username, name, phone, address, password) VALUES (" .
+        $create_user_query = "INSERT INTO Pilot (username, name, phone, address, password) VALUES (" .
             "'" . $username . "', " .
             "'" . $name . "', " .
             "'" . $phone . "', " .
