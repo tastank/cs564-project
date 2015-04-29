@@ -6,6 +6,7 @@
 
     function get_password_from_db($username) {
         global $db;
+        $username = mysqli_real_escape_string($username);
         $password_query = "SELECT password FROM Pilot WHERE username='" . $username . "';";
         $result = $db->query($password_query);
         if (!$result || $result->num_rows != 1) {
@@ -18,6 +19,7 @@
 
     function user_exists($username) {
         global $db;
+        $username = mysqli_real_escape_string($username);
         $username_query = "SELECT name FROM Pilot WHERE username='" . $username . "';";
         $result = $db->query($username_query);
         if ($result->num_rows != 0) {
