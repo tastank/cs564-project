@@ -11,7 +11,9 @@
         if (!$result || $result->num_rows != 1) {
             return false;
         }
-        return $result->fetch_assoc()['password'];
+        $password = $result->fetch_assoc()['password'];
+        $result->close();
+        return $password;
     }
 
     function user_exists($username) {
