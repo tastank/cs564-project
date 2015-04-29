@@ -7,24 +7,35 @@
 
     page_header("Register");
 
-    //placeholder
-    function user_exists($username) {
-        return true;
-    }
-
     $register_msg = "";
 
     if (isset($_POST['username'])) {
         $username = $_POST['username'];
+        $username = mysqli_real_escape_string($username);
         if (user_exists($username)) {
             //cannot add duplicate users - display a message to that effect 
+            register_msg = "User already exists - choose a different username.";
         } else {
+            //Put all of $_POST in local variables to make it easier to work with
+            $name = $_POST['name'];
+            $phone = $_POST['phone'];
+            $address = $_POST['address'];
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $verify_pw = $_POST['verify_pw'];
             //if password doesn't match
+            if ($password != $verify_pw) {
+                register_msg = "Password does not match verification; try again.";
             //if password does match
-                //if other fields are good
+            } else {
+                //should verify other fields, but I'm lazy
+                $name = mysqli_real_escape_string($name);
+                $phone = mysqli_real_escape_string($phone);
+                $address = mysqli_real_escape_string($address);
                 //  insert user
+                create_user($username, $password, $name, $phone, $address);
+            }
         }
-        //a user is trying to log in
     }
 
     print_menu();
@@ -43,7 +54,7 @@ Phone: <input type="text" name="phone" /><br />
 Address: <input type="text" name="address" /><br />
 Username: <input type="text" name="username" /><br />
 Password: <input type="password" name="password" /><br />
-Verify password: <input type="password" name="verify_password" /><br />
+Verify password: <input type="password" name="verify_pw" /><br />
 <input type="submit" name="submit" value="Submit" />
 </form>
 
