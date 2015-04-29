@@ -13,7 +13,7 @@
         $username = $_POST['username'];
         if (user_exists($username)) {
             //cannot add duplicate users - display a message to that effect 
-            register_msg = "User already exists - choose a different username.";
+            $register_msg = "User already exists - choose a different username.";
         } else {
             //Put all of $_POST in local variables to make it easier to work with
             $name = $_POST['name'];
@@ -24,7 +24,7 @@
             $verify_pw = $_POST['verify_pw'];
             //if password doesn't match
             if ($password != $verify_pw) {
-                register_msg = "Password does not match verification; try again.";
+                $register_msg = "Password does not match verification; try again.";
             //if password does match
             } else {
                 // should verify other fields, but I'm lazy
