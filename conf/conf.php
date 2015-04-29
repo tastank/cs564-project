@@ -16,7 +16,7 @@
     include (__DIR__."/user.php");
     include (__DIR__."/../layout/page.php");
     include (__DIR__."/db.php");
-    include (__DIR__."/user_functions.php");
+    include (__DIR__."/user.php");
 
 
 ?>
