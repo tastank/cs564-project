@@ -1,0 +1,21 @@
+admin.php
+    Allows administrator to
+        authorize users to rent
+        delete or create arbitrary reservations
+        add, remove, or change aircraft records
+        add, remove, or change type records
+    Not accessible to users who aren't administrators
+
+account.php
+    Allows user to
+        Change any part of their account (username, password, name, etc.)
+
+scheduler.php
+    Displays schedule for an aircraft for the week
+    Allows user to schedule an aircraft
+
+menu
+    remove "View Flights"
+
+db
+    add is_admin field to Pilot db
