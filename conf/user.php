@@ -28,4 +28,28 @@
             return false;
         }
     }
+
+    function create_user($username, $password, $name, $phone, $address) {
+        global $db;
+        $password = password_hash($password, PASSWORD_BCRYPT);
+        $username = mysqli_real_escape_string($username);
+        $name = mysqli_real_escape_string($name);
+        $phone = mysqli_real_escape_string($phone);
+        $address = mysqli_real_escape_string($address);
+        $password = mysqli_real_escape_string($password);
+        $create_query = "INSERT INTO Pilot (username, name, phone, address, password) VALUES (" .
+            "'" . $username . "', " .
+            "'" . $name . "', " .
+            "'" . $phone . "', " .
+            "'" . $address . "', " .
+            "'" . $password . "'" .
+            ");";
+
+        if ($db->query($create_user_query) === true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 ?>
