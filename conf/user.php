@@ -14,4 +14,16 @@
         return $result->fetch_assoc()['password'];
     }
 
+    function user_exists($username) {
+        global $db;
+        $username_query = "SELECT name FROM Pilot WHERE username='" . $username . "';";
+        $result = $db->query($username_query);
+        if ($result->num_rows != 0) {
+            $result->close();
+            return true;
+        } else {
+            $result->close();
+            return false;
+        }
+    }
 ?>
