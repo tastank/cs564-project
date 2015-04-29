@@ -43,6 +43,8 @@
                     $register_msg = "All fields are required.";
                 } else if (create_user($username, $password, $name, $phone, $address)) {
                     $register_msg = "Account successfully created.";
+                } else {
+                    $register_msg = "Couldn't create account for some reason.  Could you be trying a SQL injection attack?  If not, contact sysadmin.";
                 }
             }
         }
