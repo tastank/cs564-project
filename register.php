@@ -24,6 +24,7 @@
             $form_address = $_POST['address'];
         } else {
             //Put all of $_POST in local variables to make it easier to work with
+            $name = $_POST['name'];
             $phone = $_POST['phone'];
             $address = $_POST['address'];
             $username = $_POST['username'];
@@ -39,7 +40,7 @@
                 //if password does match
             } else {
                 // verify no field is empty
-                if ($name == "" || $phone == "" || $address == "" || $username == "" || $password == "") {
+                if (isset($name) || isset($phone) || isset($address) || isset($username) || isset($password)) {
                     $register_msg = "All fields are required.";
                 } else if (create_user($username, $password, $name, $phone, $address)) {
                     $register_msg = "Account successfully created.";
