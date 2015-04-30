@@ -15,8 +15,5 @@ scheduler.php
     Allows user to schedule an aircraft
     Display total number of reservations for user (aggregation!)
 
-menu
-    remove "View Flights"
-
 db
     add is_admin field to Pilot db
