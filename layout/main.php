@@ -8,7 +8,6 @@
         ?>
             <div id="horiz_navbar">
                 <ul>
-                    <li><a href="">View flights</a></li>
                     <li><a href="">Scheduler</a></li>
                     <?php if (!is_logged_in()) {
                         ?>
