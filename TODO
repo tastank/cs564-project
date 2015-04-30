@@ -13,6 +13,7 @@ account.php
 scheduler.php
     Displays schedule for an aircraft for the week
     Allows user to schedule an aircraft
+    Display total number of reservations for user (aggregation!)
 
 menu
     remove "View Flights"
