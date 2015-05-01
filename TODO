@@ -14,9 +14,7 @@ account.php
 scheduler.php
     Displays schedule for an aircraft for the week
     Allows user to schedule an aircraft
-
-menu
-    remove "View Flights"
+    Display total number of reservations for user (aggregation!)
 
 db
     add is_admin field to Pilot db
