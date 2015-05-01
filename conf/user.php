@@ -4,6 +4,10 @@
         return isset($_SESSION['username']);
     }
 
+    function get_username() {
+        return $_SESSION['username']);
+    }
+
     function is_admin() {
         global $db;
         $username = $db->real_escape_string($username);
