@@ -53,6 +53,7 @@ CREATE TABLE `Pilot` (
   `phone` varchar(20) DEFAULT NULL,
   `address` varchar(300) DEFAULT NULL,
   `password` varchar(60) DEFAULT NULL,
+  `is_admin` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -63,7 +64,7 @@ CREATE TABLE `Pilot` (
 
 LOCK TABLES `Pilot` WRITE;
 /*!40000 ALTER TABLE `Pilot` DISABLE KEYS */;
-INSERT INTO `Pilot` VALUES ('tstank','Tyler Stank','2627246355','119 W Gorham St.','$2y$10$dzITtcyJvXOBUG3cQx53luOtxx4N9QdW8NVJebNZDMLpjV.HLK/GS');
+INSERT INTO `Pilot` VALUES ('ifly','Jack Ass','911','6969 Whore St','$2y$10$06m.s4ma7MT.S81QSdiKXeY39GirjzmiKytvuKNa2tj.vVW/SV6gy',0),('jdoe','abc','123123123','123 street st','$2y$10$1CPJ0YoEaTM7qqwSvl9/Ve4Ab6.BjZK6NkG5AQdHv6KWtuzeS1sA.',0),('tstank','Tyler Stank','2627246355','119 W Gorham St.','$2y$10$dzITtcyJvXOBUG3cQx53luOtxx4N9QdW8NVJebNZDMLpjV.HLK/GS',1),('tyler','Tyler','2627246355','119 W Gorham St','$2y$10$Yr8wK7D/JCjrk6w9wu.ISeiX5dXIi7v2sFz1Cf5L71a9PMDk2WR.2',0);
 /*!40000 ALTER TABLE `Pilot` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,4 +154,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-24 15:22:01
+-- Dump completed on 2015-05-01 13:24:15
