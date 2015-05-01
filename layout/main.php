@@ -17,6 +17,10 @@
                         ?>
                     <li><a href="">Account</a></li>
                     <li><a href="<?php echo SITE_ROOT ?>/logout.php">Log out</a></li>
+                    <?php } 
+                    if (is_admin()) {
+                        ?>
+                    <li><a href="<?php echo SITE_ROOT ?>/admin.php">Admin</a></li>
                     <?php } ?>
                 </ul>
             </div>
