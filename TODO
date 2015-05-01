@@ -15,3 +15,6 @@ scheduler.php
     Displays schedule for an aircraft for the week
     Allows user to schedule an aircraft
     Display total number of reservations for user (aggregation!)
+
+user.php
+    Store everything in $_SESSION[] to not have to query the DB all the time
