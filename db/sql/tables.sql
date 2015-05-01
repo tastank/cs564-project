@@ -11,6 +11,7 @@ CREATE TABLE `Pilot` (
   `phone` varchar(20) DEFAULT NULL,
   `address` varchar(300) DEFAULT NULL,
   `password` varchar(60) DEFAULT NULL,
+  `is_admin` boolean DEFAULT NULL,
   PRIMARY KEY (`username`)
 );
 
