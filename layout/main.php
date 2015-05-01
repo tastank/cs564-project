@@ -8,7 +8,7 @@
         ?>
             <div id="horiz_navbar">
                 <ul>
-                    <li><a href="">Scheduler</a></li>
+                    <li><a href="<?php echo SITE_ROOT ?>/scheduler.php">Scheduler</a></li>
                     <?php if (!is_logged_in()) {
                         ?>
                     <li><a href="<?php echo SITE_ROOT ?>/login.php">Log in</a></li>
