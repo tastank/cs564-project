@@ -10,7 +10,7 @@
 
     function is_admin() {
         global $db;
-        $username = $db->real_escape_string($username);
+        $username = get_username();
         $password_query = "SELECT is_admin FROM Pilot WHERE username='" . $username . "';";
         $result = $db->query($password_query);
         if (!$result || $result->num_rows != 1) {
