@@ -22,7 +22,9 @@
         $username = $db->real_escape_string($username);
         $username_query = "SELECT name FROM Pilot WHERE username='" . $username . "';";
         $result = $db->query($username_query);
-        if ($result->num_rows != 0) {
+        if ($result === false) {
+            return false;
+        } else if ($result->num_rows != 0) {
             $result->close();
             return true;
         } else {
