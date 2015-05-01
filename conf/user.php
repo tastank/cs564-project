@@ -5,7 +5,7 @@
     }
 
     function get_username() {
-        return $_SESSION['username']);
+        return $_SESSION['username'];
     }
 
     function is_admin() {
