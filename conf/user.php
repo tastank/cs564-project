@@ -4,6 +4,19 @@
         return isset($_SESSION['username']);
     }
 
+    function is_admin() {
+        global $db;
+        $username = $db->real_escape_string($username);
+        $password_query = "SELECT is_admin FROM Pilot WHERE username='" . $username . "';";
+        $result = $db->query($password_query);
+        if (!$result || $result->num_rows != 1) {
+            return false;
+        }
+        $is_admin = $result->fetch_assoc()['is_admin'];
+        $result->close();
+        return $is_admin;
+    }
+
     function get_password_from_db($username) {
         global $db;
         $username = $db->real_escape_string($username);
