@@ -5,6 +5,9 @@
     }
 
     function get_username() {
+        if (!is_logged_in()) {
+            return null;
+        }
         return $_SESSION['username'];
     }
 
