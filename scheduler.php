@@ -1,48 +1,30 @@
 <!DOCTYPE html>
 <?php
-include(__DIR__."/conf.php");
-include(__DIR__."/layout/main.php");
+//Author: Phonaputer
+//Date: May 1st 2015
+include_once(__DIR__."/conf.php");
+include_once(__DIR__."/layout/main.php");
 include_once(__DIR__."/layout/page.php");
-page_header("Project root");
+include_once(__DIR__."/db/scheduler.php");
+page_header("scheduler");
 print_menu();
+$username = get_username();
 ?>
 
-
-<?php
-	function get_aircraft_information(){
-		global $db;
-		$aircraftRegNums = array();
-		
-		$query = "SELECT reg_number FROM Aircraft;";
-		if($result = $db->query($query)){
-			$tempArray = array();
-			
-			while($row = $result->fetch_object()) {
-					$tempArray = $row;
-					array_push($aircraftRegNums, $tempArray);
-			}
-			echo("<p>fuck</p>");/////////////////////////////////////////////////////
-		}
-		return $aircraftRegNums;
-	}
+<?php //If there was a post
+	//IF THERE WAS A POST TO THE PAGE WE MUST CREATE A RESERVATION
+	if(isset($_POST['startYear'])){
+		$startTime = $_POST['startYear'].'-'.$_POST['startMonth'].'-'.$_POST['startDay'].' ';
+		$startTime .= $_POST['startHour'].':00:00';
+		$startTime = date('Y-m-d H:i:s', strtotime($startTime));
 	
-	function get_reservation_information(){
-		global $db;
-		$reservationInfo = array();
-		$query = "SELECT reg_number, start, end";
-		$query .= " FROM Rental;";
+		$endTime = $_POST['endYear'].'-'.$_POST['endMonth'].'-'.$_POST['endDay'].' ';
+		$endTime .= $_POST['endHour'].':00:00';
+		$endTime = date('Y-m-d H:i:s', strtotime($endTime));
 		
-		if($result = $db->query($query)){
-			$tempArray = array();
-			while($row = $result->fetch_object()) {
-					$tempArray = $row;
-					array_push($reservationInfo, $tempArray);
-			}
-		}
-		return $reservationInfo;
+		$success = make_reservation($_POST['airplane'], $username, $startTime, $endTime);
 	}
 ?>
-
 
 <h1>Reserve a time:</h1>
 <?php //dropdowns for reservations
@@ -56,54 +38,84 @@ print_menu();
 	////////////////////////////DATE TIME DROPDOWNS////////////////////////////
 	//Day Dropdown:
 	$date = 1;
-	while($date < 31){
-		$dropdownDay = '<option value="' . $date . '">' . $date . '</option>';
+	while($date <= 31){
+		$dropdownDay .= '<option value="' . $date . '">' . $date . '</option>';
 		$date = $date + 1;
 	}
 	//Month Dropdown
 	$date = 1;
-	while($date < 12){
-		$dropdownMonth = '<option value="' . $date . '">' . $date . '</option>';
+	while($date <= 12){
+		$dropdownMonth .= '<option value="' . $date . '">' . $date . '</option>';
 		$date = $date + 1;
 	}
 	//Year Dropdown
 	$date = 2015;
-	while($date < 2025){
-		$dropdownYear = '<option value="' . $date . '">' . $date . '</option>';
+	while($date <= 2025){
+		$dropdownYear .= '<option value="' . $date . '">' . $date . '</option>';
 		$date = $date + 1;
 	}
 	//Hour Dropdown
-	$date = 1;
-	while($date < 24){
-		$dropdownHour = '<option value="' . $date . '">' . $date . '</option>';
+	$date = 0;
+	while($date <= 23){
+		$dropdownHour .= '<option value="' . $date . '">' . $date . '</option>';
 		$date = $date + 1;
 	}
 	
 	////////////////////////////////AIRPLANE DROPDOWN//////////////////////////
-	$aircraftInfo = get_aircraft_information();
+	$aircraftInfo = get_aircraft_information($username);
 	
-	echo($aircraftInfo[1]("reg_number"));
-	
-	//var_dump($aircraftInfo);
-	
+	foreach($aircraftInfo as $apln){
+		$dropdownPlane .= '<option value="' .$apln->reg_number. '">';
+		$dropdownPlane .= $apln->reg_number. '</option>';
+	}
 	
 	///////////////////////////////ECHO DROPDOWNS//////////////////////////////
-	echo('<select id="airplane">'.$dropdownPlane.'</select>');
-	echo('<select id="startDay">'.$dropdownDay.'</select>');
-	echo('<select id="startMonth">'.$dropdownMonth.'</select>');
-	echo('<select id="startYear">'.$dropdownYear.'</select>');
-	echo('<select id="startHour">'.$dropdownHour.'<select>');
-	echo('<select id="endDay">'.$dropdownDay.'</select>');
-	echo('<select id="endMonth">'.$dropdownMonth.'</select>');
-	echo('<select id="endYear">'.$dropdownYear.'</select>');
-	echo('<select id="endHour">'.$dropdownHour.'<select>');
+	echo('<form action="./scheduler.php" method="POST">');
+	echo('<span><b>Aircraft:</b></span><br><select name="airplane">'.$dropdownPlane.'</select>');
+	echo('<br><span><b>Start Time:</b></span><br>');
+	echo('<span> Day: </span><select name="startDay">'.$dropdownDay.'</select>');
+	echo('<span> Month: </span><select name="startMonth">'.$dropdownMonth.'</select>');
+	echo('<span> Year: </span><select name="startYear">'.$dropdownYear.'</select>');
+	echo('<span> Hour: </span><select name="startHour">'.$dropdownHour.'<select>');
+	echo('<br><span><b>End Time:</b></span><br>');
+	echo('<span> Day: </span><select name="endDay">'.$dropdownDay.'</select>');
+	echo('<span> Month: </span><select name="endMonth">'.$dropdownMonth.'</select>');
+	echo('<span> Year: </span><select name="endYear">'.$dropdownYear.'</select>');
+	echo('<span> Hour: </span><select name="endHour">'.$dropdownHour.'</select>');
+	echo('<br><br><input type="submit" value="Submit">');
+	echo('</form>');
 ?>
 
 <h1>Currently reserved times:</h1>
-<?php//table of current reservations
+<?php //table of current reservations
 	$currentReservations = get_reservation_information();
+	$table = '<table class="theTable">';
+	$table .= '<tr><th>Reistration Number</th><th>Username</th><th>Start Time</th><th>End Time</th></tr>';
+	foreach($currentReservations as $res){
+			$table .= '<tr>';
+			$table .= '<td>'.$res->reg_number.'</td>';
+			$table .= '<td>'.$res->username.'</td>';
+			$table .= '<td>'.$res->start.'</td>';
+			$table .= '<td>'.$res->end.'</td>';
+			$table .= '</tr>';
+	}
+	$table .= "</table>";
+		
+	echo($table);
+	
+	//aggregated total of user's current reservations
+	echo("<p>You currently have ");
+	echo(number_of_user_reservations($username)[0]);
+	echo(" reservations.</p>");
+	
+	if(isset($success)){
+		if($success){
+			echo('<br><div class="pass-warning">RESERVATION SUCCESSFUL</div>');
+		}else{
+			echo('<br><div class="pass-warning">RESERVATION FAILURE</div>');
+		}		
+	}
 ?>
-
 
 <?php
 page_footer();
