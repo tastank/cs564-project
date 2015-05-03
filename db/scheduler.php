@@ -38,6 +38,15 @@
 	}
 	
 	function make_reservation($regNum, $username, $start, $end){
+		if(strlen($regNum) < 1){
+			return false;
+		}
+		$startDT = new DateTime($start);
+		$endDT =  new DateTime($end);
+		if($endDT < $startDT){
+			return false;
+		}
+		
 		global $db;
 		$query = "INSERT INTO Rental (start, end, username, reg_number) VALUES";
 		$query .= " ('".$start."', '".$end."', '".$username."', '".$regNum."');";
