@@ -43,7 +43,7 @@
 		}
 		$startDT = new DateTime($start);
 		$endDT =  new DateTime($end);
-		if($endDT < $startDT){
+		if($endDT <= $startDT){
 			return false;
 		}
 		
