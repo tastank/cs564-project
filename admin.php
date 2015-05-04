@@ -2,6 +2,7 @@
     include(__DIR__."/conf.php");
     include(__DIR__."/layout/main.php");
     include_once(__DIR__."/layout/page.php");
+    include_once(__DIR__."/db/aircraft.php");
 
     //Don't display if not logged in or not admin!
     if (!is_logged_in() || !is_admin()) {
