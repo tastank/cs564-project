@@ -66,7 +66,7 @@
             "'" . $manf . "', " .
             "'" . $number . "', " .
             "'" . $common_name . "', " . 
-            "'" . $short_name . ");";
+            "'" . $short_name . "');";
 
         //this should be either true or false
         return $db->query($add_query);
@@ -83,7 +83,7 @@
     function set_number($tid, $number) {
         global $db;
         $manf = $db->real_escape_string($number);
-        $set_query = "UPDATE Type SET manf='" . $number . "' WHERE tid='" . $tid . "';";
+        $set_query = "UPDATE Type SET number='" . $number . "' WHERE tid='" . $tid . "';";
 
         return $db->query($set_query);
     }
@@ -91,7 +91,7 @@
     function set_common_name($tid, $common_name) {
         global $db;
         $manf = $db->real_escape_string($common_name);
-        $set_query = "UPDATE Type SET manf='" . $common_name . "' WHERE tid='" . $tid . "';";
+        $set_query = "UPDATE Type SET common_name='" . $common_name . "' WHERE tid='" . $tid . "';";
 
         return $db->query($set_query);
     }
@@ -99,10 +99,9 @@
     function set_short_name($tid, $short_name) {
         global $db;
         $manf = $db->real_escape_string($short_name);
-        $set_query = "UPDATE Type SET manf='" . $short_name . "' WHERE tid='" . $tid . "';";
+        $set_query = "UPDATE Type SET short_name='" . $short_name . "' WHERE tid='" . $tid . "';";
 
         return $db->query($set_query);
     }
-
 
 ?>
