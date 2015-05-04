@@ -11,6 +11,20 @@
         return $_SESSION['username'];
     }
 
+    function get_all_usernames() {
+        global $db;
+        $username_query = "SELECT username FROM Aircraft";
+        $result = $db->query($username_query);
+        if ($result === false) {
+            return null;
+        }
+        $usernames = array();
+        while ($row = $result->fetch_assoc()) {
+            array_push($usernames, $row['username']);
+        }
+        return $usernames;
+    }
+
     function is_admin() {
         global $db;
         $username = get_username();
