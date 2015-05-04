@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <?php
-//Author: Phonaputer
-//Date: May 1st 2015
 include_once(__DIR__."/conf.php");
 include_once(__DIR__."/layout/main.php");
 include_once(__DIR__."/layout/page.php");
