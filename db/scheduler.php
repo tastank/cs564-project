@@ -25,7 +25,7 @@
 		global $db;
 		$reservationInfo = array();
 		$query = "SELECT reg_number, username, start, end";
-		$query .= " FROM Rental;";
+		$query .= " FROM Rental ORDER BY start;";
 		
 		if($result = $db->query($query)){
 			$tempArray = array();
