@@ -41,8 +41,8 @@ User: <select name="pilot"><?php echo $user_dropdown?></select>
 <input type="submit" name="submit" value="Submit" />
 </form>
 
-<!--Change aircraft records -->
 <br />
+<!--Change aircraft records -->
 <h2> Change aircraft records </h2>
 <form method="POST" action="aircraftrecords.php">
 Aircraft: <select name="aircraft"><?php echo $aircraft_dropdown?></select><br />
@@ -51,6 +51,24 @@ Hourly rental cost: <input type="text" name="cost" /><br />
 <input type="submit" name="submit" value="Submit" />
 </form>
 
+
+<br />
+<!--Add aircraft records -->
+<?php
+    $types = get_all_full_types();
+    $tids = get_all_tids();
+    $type_dropdown = "";
+    for ($i=0; $i<count($tids); $i++) {
+        $type_dropdown .= '<option value="' . $tids[$i] . '">' . $types[$i] . '</option>';
+    }
+?>
+
+<h2> Add aircraft records </h2>
+<form method="POST" action="aircraftrecords.php">
+Registration number: <input type="text" name="reg_numer" /><br />
+Type: <select name="type"><?php echo $type_dropdown ?></select><br />
+Hourly rental cost: <input type="text" name="cost" /><br />
+<input type="submit" name="addrecord" value="Add" />
 
 <?php
     page_footer();
