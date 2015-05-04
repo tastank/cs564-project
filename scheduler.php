@@ -96,7 +96,7 @@ $username = get_username();
 <?php //table of current reservations
 	$currentReservations = get_reservation_information();
 	$table = '<table class="theTable">';
-	$table .= '<tr><th>Reistration Number</th><th>Username</th><th>Start Time</th><th>End Time</th></tr>';
+	$table .= '<tr><th>Registration Number</th><th>Username</th><th>Start Time</th><th>End Time</th></tr>';
 	foreach($currentReservations as $res){
 			$table .= '<tr>';
 			$table .= '<td>'.$res->reg_number.'</td>';
