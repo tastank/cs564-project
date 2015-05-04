@@ -1,5 +1,6 @@
 <?php
     include_once(__DIR__."/db.php");
+    include_once(__DIR__."/type.php");
 
     function get_all_reg_numbers() {
         global $db;
@@ -16,50 +17,6 @@
         return $reg_numbers;
     }
 
-    function get_all_full_types() {
-        global $db;
-        $type_query = "SELECT manf, number, common_name, short_name FROM Type";
-        $result = $db->query($type_query);
-        if ($result === false) {
-            return null;
-        }
-        $types = array();
-        while ($row = $result->fetch_assoc()) {
-            array_push($types, $row['manf'] . " " . $row['number'] . " " . $row['common_name'] . " (" . $row['short_name'] . ")");
-        }
-        $result->close();
-        return $types;
-    }
-
-    function get_all_full_type_names() {
-        global $db;
-        $type_query = "SELECT manf, number, common_name FROM Type";
-        $result = $db->query($type_query);
-        if ($result === false) {
-            return null;
-        }
-        $types = array();
-        while ($row = $result->fetch_assoc()) {
-            array_push($types, $row['manf'] . " " . $row['number'] . " " . $row['common_name']);
-        }
-        $result->close();
-        return $types;
-    }
-
-    function get_all_tids() {
-        global $db;
-        $tid_query = "SELECT tid FROM Type";
-        $result = $db->query($tid_query);
-        if ($result === false) {
-            return null;
-        }
-        $tids = array();
-        while ($row = $result->fetch_assoc()) {
-            array_push($tids, $row['tid']);
-        }
-        $result->close();
-        return $tids;
-    }
 
     function delete_record($reg_number) {
         // Should not only delete from aircraft
