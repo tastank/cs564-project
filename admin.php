@@ -54,16 +54,18 @@ User: <select name="pilot"><?php echo $user_dropdown?></select>
 <br />
 <!--Change aircraft records -->
 <h2> Change aircraft records </h2>
+
 <?php
-    if (isset($_SESSION['record_msg'])) {
-        echo $_SESSION['record_msg'];
-        unset($_SESSION['record_msg']);
+    if (isset($_SESSION['aircraft_record_msg'])) {
+        echo $_SESSION['aircraft_record_msg'];
+        unset($_SESSION['aircraft_record_msg']);
     }
-    if (isset($_SESSION['record_err'])) {
-        echo $_SESSION['record_err'];
-        unset($_SESSION['record_err']);
+    if (isset($_SESSION['aircraft_record_err'])) {
+        echo $_SESSION['aircraft_record_err'];
+        unset($_SESSION['aircraft_record_err']);
     }
 ?>
+
 <form method="POST" action="aircraftrecords.php">
 Aircraft: <select name="aircraft"><?php echo $aircraft_dropdown?></select><br />
 Hourly rental cost: <input type="text" name="cost" /><br />
@@ -75,7 +77,7 @@ Hourly rental cost: <input type="text" name="cost" /><br />
 <br />
 <!--Add aircraft records -->
 <?php
-    $types = get_all_full_types();
+    $types = get_all_full_type_names();
     $tids = get_all_tids();
     $type_dropdown = "";
     for ($i=0; $i<count($tids); $i++) {
@@ -85,13 +87,13 @@ Hourly rental cost: <input type="text" name="cost" /><br />
 
 <h2> Add aircraft records </h2>
 <?php
-    if (isset($_SESSION['add_msg'])) {
-        echo $_SESSION['add_msg'];
-        unset($_SESSION['add_msg']);
+    if (isset($_SESSION['aircraft_add_msg'])) {
+        echo $_SESSION['aircraft_add_msg'];
+        unset($_SESSION['aircraft_add_msg']);
     }
-    if (isset($_SESSION['add_err'])) {
-        echo $_SESSION['add_err'];
-        unset($_SESSION['add_err']);
+    if (isset($_SESSION['aircraft_add_err'])) {
+        echo $_SESSION['aircraft_add_err'];
+        unset($_SESSION['aircraft_add_err']);
     }
 ?>
 
@@ -101,6 +103,71 @@ Type: <select name="type"><?php echo $type_dropdown ?></select><br />
 Hourly rental cost: <input type="text" name="cost" /><br />
 <input type="submit" name="addrecord" value="Add" />
 
+<br />
+<!--Change type records -->
+<?php
+    $types = get_all_full_types();
+    $tids = get_all_tids();
+    $type_dropdown = "";
+    for ($i=0; $i<count($tids); $i++) {
+        $type_dropdown .= '<option value="' . $tids[$i] . '">' . $types[$i] . '</option>';
+    }
+?>
+
+<h2> Change type records </h2>
+<?php
+    if (isset($_SESSION['type_add_msg'])) {
+        echo $_SESSION['type_add_msg'];
+        unset($_SESSION['type_add_msg']);
+    }
+    if (isset($_SESSION['type_add_err'])) {
+        echo $_SESSION['type_add_err'];
+        unset($_SESSION['type_add_err']);
+    }
+?>
+
+
+<form method="POST" action="typerecords.php">
+Type: <select name="type"><?php echo $type_dropdown ?></select><br />
+Manufacturer: <input type="text" name="manf" /><br />
+Number: <input type="text" name="number" /><br />
+Common name: <input type="text" name="short_name" /><br />
+Short name: <input type="text" name="short_name" /><br />
+<input type="submit" name="change" value="Submit" />
+
 <?php
     page_footer();
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
