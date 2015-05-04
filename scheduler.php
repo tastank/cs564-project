@@ -6,8 +6,14 @@ include_once(__DIR__."/conf.php");
 include_once(__DIR__."/layout/main.php");
 include_once(__DIR__."/layout/page.php");
 include_once(__DIR__."/db/scheduler.php");
-page_header("scheduler");
+
+if (!is_logged_in()) {
+    header('Location: '.SITE_ROOT.'/login.php');
+}
+
+page_header("Scheduler");
 print_menu();
+
 $username = get_username();
 ?>
 
