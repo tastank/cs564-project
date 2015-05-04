@@ -16,6 +16,21 @@
         return $reg_numbers;
     }
 
+    function get_all_full_types() {
+        global $db;
+        $type_query = "SELECT manf, number, common_name FROM TYPE";
+        $result = $db->query($reg_number_query);
+        if ($result === false) {
+            return null;
+        }
+        $types = array();
+        while ($row = $result->fetch_assoc()) {
+            array_push($types, $row['manf'] . $row['number'] . $row['common_name']);
+        }
+        $result->close();
+        return $types;
+    }
+
     function delete_record($reg_number) {
         // Should not only delete from aircraft
         // Should also delete authorizations (can_rent) and scheduled rentals
