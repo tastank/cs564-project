@@ -12,7 +12,31 @@
         while ($row = $result->fetch_assoc()) {
             array_push($reg_numbers, $row['reg_number']);
         }
+        $result->close();
         return $reg_numbers;
+    }
+
+    function delete_record($reg_number) {
+        // Should not only delete from aircraft
+        // Should also delete authorizations (can_rent) and scheduled rentals
+        global $db;
+        $delete_aircraft_query = "DELETE FROM Aircraft WHERE reg_number='" . $reg_number . "';";
+        $delete_rentals_query = "DELETE FROM Rental WHERE reg_number='" . $reg_number . "';";
+        $delete_auth_query = "DELETE FROM can_rent WHERE reg_number='" . $reg_number . "';";
+
+        if ($db->query($delete_aircraft_query) === false) {
+            return false;
+        }
+
+        if ($db->query($delete_rentals_query) === false) {
+            return false;
+        }
+
+        if ($db->query($delete_auth_query) === false) {
+            return false;
+        }
+
+        return true;
     }
 
 ?>
