@@ -14,6 +14,7 @@
             $_SESSION['record_msg'] = "Deletion successful";
         } else {
             $_SESSION['record_err'] = "Deletion unsuccessful";
+        }
     }
     $cost = $_POST['cost'];
     if (update_cost($aircraft, $cost)) {
@@ -21,4 +22,5 @@
     } else {
         $_SESSION['record_err'] = "Update unsuccessful";
     }
+    header('Location: '.SITE_ROOT.'/admin.php');
 ?>
