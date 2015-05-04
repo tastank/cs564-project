@@ -19,7 +19,11 @@
         }
     } else {
         //this shouldn't just be a parameter, because we may want to do other things when a pilot is de-auth'd.
-        deauthorize_pilot($pilot, $aircraft);
+        if (deauthorize_pilot($pilot, $aircraft)) {
+            $_POST['auth_msg'] = "Deauthorization successful";
+        } else {
+            $_POST['auth_err'] = "Deauthorization unsuccessful";
+        }
     }
 
 ?>
