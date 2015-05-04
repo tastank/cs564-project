@@ -48,7 +48,7 @@ User: <select name="pilot"><?php echo $user_dropdown?></select>
 Aircraft: <select name="aircraft"><?php echo $aircraft_dropdown?></select><br />
 Hourly rental cost: <input type="text" name="cost" /><br />
 <input type="submit" name="delete" value="DELETE THIS AIRPLANE" />
-<input type="submit" name="submit" value="Submit" />
+<input type="submit" name="changerecord" value="Submit" />
 </form>
 
 
