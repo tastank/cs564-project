@@ -12,7 +12,11 @@
     $aircraft = $_POST['aircraft'];
     $auth_type = $_POST['auth_type'];
     if ($auth_type == 'add') {
-        authorize_pilot($pilot, $aircraft);
+        if (authorize_pilot($pilot, $aircraft)) {
+            $_POST['auth_msg'] = "Authorization successful";
+        } else {
+            $_POST['auth_err'] = "Authorization unsuccessful";
+        }
     } else {
         //this shouldn't just be a parameter, because we may want to do other things when a pilot is de-auth'd.
         deauthorize_pilot($pilot, $aircraft);
