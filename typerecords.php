@@ -11,7 +11,7 @@
     }*/
     if (isset($_POST['delete'])) {
         $tid = $_POST['tid'];
-        if (delete_type_record($tid)) {
+        if (delete_type($tid)) {
             $_SESSION['type_record_msg'] = "Deletion successful";
         } else {
             $_SESSION['type_record_err'] = "Deletion unsuccessful";
