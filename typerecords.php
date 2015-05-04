@@ -1,36 +1,32 @@
 <?php
     include_once(__DIR__."/conf.php");
     //I said I wouldn't do this, but I can't think of how else to best organize stuff
-    include_once(__DIR__."/db/types.php");
+    include_once(__DIR__."/db/type.php");
 
-    //change this condition
-    /*if (!isset($_POST['aircraft']) || (!isset($_POST['cost']) && !isset($_POST['delete']))) {
-        $_SESSION['record_err'] = "Something is horribly wrong, or you've forgotten to set a field.";
-        // Can safely do this, as the admin page will redirect to login if not admin
-        header('Location: '.SITE_ROOT.'/admin.php');
-    }*/
     if (isset($_POST['delete'])) {
-        $tid = $_POST['tid'];
+        $tid = $_POST['type'];
         if (delete_type($tid)) {
-            $_SESSION['type_record_msg'] = "Deletion successful";
+            $_SESSION['type_change_msg'] = "Deletion successful";
         } else {
-            $_SESSION['type_record_err'] = "Deletion unsuccessful";
+            $_SESSION['type_change_err'] = "Deletion unsuccessful";
         }
     }
+
+    $_SESSION['type_change_msg'] = "";
     if (isset($_POST['change'])) {
-        $tid = $_POST['tid'];
+        $tid = $_POST['type'];
         $error = false;
-        if (isset($_POST['manf'])) {
+        if ($_POST['manf'] != "") {
             if (!set_manf($tid, $_POST['manf'])) {
                 $error = true;
             }
         }
-        if (isset($_POST['number'])) {
+        if ($_POST['number'] != "") {
             if (!set_number($tid, $_POST['number'])) {
                 $error = true;
             }
         }
-        if (isset($_POST['common_name'])) {
+        if ($_POST['common_name'] != "") {
             if ($_POST['common_name'] == "NULL") {
                 $_POST['common_name'] = NULL;
             }
@@ -38,15 +34,15 @@
                 $error = true;
             }
         }
-        if (isset($_POST['short_name'])) {
+        if ($_POST['short_name'] != "") {
             if (!set_short_name($tid, $_POST['short_name'])) {
                 $error = true;
             }
         }
         if ($error) {
-            $_SESSION['type_record_err'] = "Update unsuccessful";
+            $_SESSION['type_change_err'] .= "Update unsuccessful";
         } else {
-            $_SESSION['type_record_msg'] = "Update successful";
+            $_SESSION['type_change_msg'] .= "Update successful";
         }
     }
     if (isset($_POST['add'])) {
