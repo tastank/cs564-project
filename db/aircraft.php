@@ -10,7 +10,7 @@
         }
         $reg_numbers = array();
         while ($row = $result->fetch_assoc()) {
-            array_push($reg_numbers, $row['username']);
+            array_push($reg_numbers, $row['reg_number']);
         }
         return $reg_numbers;
     }
