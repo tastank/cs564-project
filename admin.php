@@ -41,11 +41,8 @@ User: <select name="pilot"><?php echo $user_dropdown?></select>
 <input type="submit" name="submit" value="Submit" />
 </form>
 
-<?php
-    //change aircraft records
-
-?>
-
+<!--Change aircraft records -->
+<br />
 <h2> Change aircraft records </h2>
 <form method="POST" action="aircraftrecords.php">
 Aircraft: <select name="aircraft"><?php echo $aircraft_dropdown?></select><br />
