@@ -25,5 +25,6 @@
             $_POST['auth_err'] = "Deauthorization unsuccessful";
         }
     }
+    header('Location: '.SITE_ROOT.'/admin.php');
 
 ?>

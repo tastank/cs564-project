@@ -28,7 +28,7 @@
         //prevent duplicates
         $find_query = "SELECT * FROM can_rent WHERE username='" . $pilot . "' AND reg_number='" . $aircraft . "';";
         $result = $db->query($find_query);
-        if ($result === false || $result->num_rows != 0) {
+        if ($result === false || $result->num_rows == 0) {
             return "Pilot was not authorized in the first place";
         }
         $result->close();
