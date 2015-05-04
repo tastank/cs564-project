@@ -32,14 +32,28 @@
 
     ?>
 
-    <h2> Authorize or deauthorize renters </h2>
-    <form method="POST" action="auth.php">
-	<span> User: </span><select name="pilot"><?php echo $user_dropdown?></select>
-	<span> Aircraft: </span><select name="aircraft"><?php echo $aircraft_dropdown?></select><br />
-    <input type="radio" name="auth_type" value="add" />Authorize<br />
-    <input type="radio" name="auth_type" value="remove" />Deauthorize<br />
-    <input type="submit" name="submit" value="Submit" />
-    </form>
+<h2> Authorize or deauthorize renters </h2>
+<form method="POST" action="auth.php">
+User: <select name="pilot"><?php echo $user_dropdown?></select>
+<span> Aircraft: </span><select name="aircraft"><?php echo $aircraft_dropdown?></select><br />
+<input type="radio" name="auth_type" value="add" />Authorize<br />
+<input type="radio" name="auth_type" value="remove" />Deauthorize<br />
+<input type="submit" name="submit" value="Submit" />
+</form>
+
+<?php
+    //change aircraft records
+
+?>
+
+<h2> Change aircraft records </h2>
+<form method="POST" action="aircraftrecords.php">
+Aircraft: <select name="aircraft"><?php echo $aircraft_dropdown?></select><br />
+Hourly rental cost: <input type="text" name="cost" /><br />
+<input type="submit" name="delete" value="DELETE THIS AIRPLANE" />
+<input type="submit" name="submit" value="Submit" />
+</form>
+
 
 <?php
     page_footer();
