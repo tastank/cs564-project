@@ -13,7 +13,7 @@
 
     function get_all_usernames() {
         global $db;
-        $username_query = "SELECT username FROM Aircraft";
+        $username_query = "SELECT username FROM Pilot";
         $result = $db->query($username_query);
         if ($result === false) {
             return null;
