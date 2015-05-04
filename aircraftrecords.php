@@ -19,13 +19,11 @@
     }
     if (isset($_POST['changerecord'])) {
         $aircraft = $_POST['aircraft'];
-        if (delete_record($aircraft)) {
-            $cost = $_POST['cost'];
-            if (update_cost($aircraft, $cost)) {
-                $_SESSION['record_msg'] = "Update successful";
-            } else {
-                $_SESSION['record_err'] = "Update unsuccessful";
-            }
+        $cost = $_POST['cost'];
+        if (update_cost($aircraft, $cost)) {
+            $_SESSION['record_msg'] = "Update successful";
+        } else {
+            $_SESSION['record_err'] = "Update unsuccessful";
         }
     }
     if (isset($_POST['addrecord'])) {
