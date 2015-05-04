@@ -14,16 +14,6 @@
 //TODO: This is where administrator can modify accounts, authorize rentals,
 //  add or change aircraft records, and add or change type records
 
-    //also placeholder
-    function get_all_reg_numbers() {
-        $numbers = array();
-        array_push($numbers, "N91HL");
-        array_push($numbers, "N6146Q");
-        array_push($numbers, "N95787");
-        array_push($numbers, "N49439");
-        return $numbers;
-    }
-
     //Authorize a rental
     $users = get_all_usernames();
     $reg_numbers = get_all_reg_numbers();
