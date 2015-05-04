@@ -1,9 +1,12 @@
 <?php
-    include(__DIR__."/conf.php");
+    include_once(__DIR__."/conf.php");
+    //I said I wouldn't do this, but I can't think of how else to best organize stuff
+    include_once(__DIR__."/db/auth.php");
 
     if (!isset($_POST['pilot']) || !isset($_POST['aircraft']) || !isset($_POST['auth_type'])) {
         $_POST['auth_err'] = "Something is horribly wrong, or you've forgotten to set a field.";
-        header('Location: '.SITE_ROOT.'/index.php');
+        // Can safely do this, as the admin page will redirect to login if not admin
+        header('Location: '.SITE_ROOT.'/admin.php');
     }
     $pilot = $_POST['pilot'];
     $aircraft = $_POST['aircraft'];
