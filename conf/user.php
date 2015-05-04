@@ -23,6 +23,7 @@
             array_push($usernames, $row['username']);
         }
         return $usernames;
+    }
     
     function get_name() {
         global $db;
