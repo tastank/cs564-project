@@ -81,5 +81,20 @@
         return $db->query($cost_query);
     }
 
+    function add_aircraft($reg_number, $cost, $tid) {
+        global $db;
+        $reg_number = $db->real_escape_string($reg_number);
+        $cost = $db->real_escape_string($cost);
+        $tid = $db->real_escape_string($tid);
+
+        $add_query = "INSERT INTO Aircraft (reg_number, cost, tid) VALUES (" .
+            "'" . $reg_number . "', " .
+            $cost . ", " .
+            $tid . ");";
+
+        //this should be either true or false
+        return $db->query($add_query);
+    }
+
 
 ?>
