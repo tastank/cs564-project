@@ -18,17 +18,32 @@
 
     function get_all_full_types() {
         global $db;
-        $type_query = "SELECT manf, number, common_name FROM TYPE";
-        $result = $db->query($reg_number_query);
+        $type_query = "SELECT manf, number, common_name FROM Type";
+        $result = $db->query($type_query);
         if ($result === false) {
             return null;
         }
         $types = array();
         while ($row = $result->fetch_assoc()) {
-            array_push($types, $row['manf'] . $row['number'] . $row['common_name']);
+            array_push($types, $row['manf'] . " " . $row['number'] . " " . $row['common_name']);
         }
         $result->close();
         return $types;
+    }
+
+    function get_all_tids() {
+        global $db;
+        $tid_query = "SELECT tid FROM Type";
+        $result = $db->query($tid_query);
+        if ($result === false) {
+            return null;
+        }
+        $tids = array();
+        while ($row = $result->fetch_assoc()) {
+            array_push($tids, $row['tid']);
+        }
+        $result->close();
+        return $tids;
     }
 
     function delete_record($reg_number) {
