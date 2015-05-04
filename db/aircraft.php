@@ -20,6 +20,7 @@
         // Should not only delete from aircraft
         // Should also delete authorizations (can_rent) and scheduled rentals
         global $db;
+        $reg_number = $db->real_escape_string($reg_number);
         $delete_aircraft_query = "DELETE FROM Aircraft WHERE reg_number='" . $reg_number . "';";
         $delete_rentals_query = "DELETE FROM Rental WHERE reg_number='" . $reg_number . "';";
         $delete_auth_query = "DELETE FROM can_rent WHERE reg_number='" . $reg_number . "';";
@@ -38,5 +39,17 @@
 
         return true;
     }
+
+    function update_cost($reg_number, $cost) {
+        global $db;
+        $reg_number = $db->real_escape_string($reg_number);
+        $cost = $db->real_escape_string($cost);
+
+        $cost_query = "UPDATE Aircraft SET cost=" . $cost . " WHERE reg_number ='" . $reg_number . "';";
+
+        //this should be either true or false
+        return $db->query($cost_query);
+    }
+
 
 ?>
