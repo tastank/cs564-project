@@ -133,6 +133,7 @@ Manufacturer: <input type="text" name="manf" /><br />
 Number: <input type="text" name="number" /><br />
 Common name: <input type="text" name="short_name" /><br />
 Short name: <input type="text" name="short_name" /><br />
+<input type="submit" name="delete" value="DELETE THIS TYPE" />
 <input type="submit" name="change" value="Submit" />
 
 <?php
