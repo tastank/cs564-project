@@ -18,6 +18,21 @@
 
     function get_all_full_types() {
         global $db;
+        $type_query = "SELECT manf, number, common_name, short_name FROM Type";
+        $result = $db->query($type_query);
+        if ($result === false) {
+            return null;
+        }
+        $types = array();
+        while ($row = $result->fetch_assoc()) {
+            array_push($types, $row['manf'] . " " . $row['number'] . " " . $row['common_name'] . " (" . $row['short_name'] . ")");
+        }
+        $result->close();
+        return $types;
+    }
+
+    function get_all_full_type_names() {
+        global $db;
         $type_query = "SELECT manf, number, common_name FROM Type";
         $result = $db->query($type_query);
         if ($result === false) {
