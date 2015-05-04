@@ -115,5 +115,27 @@
             return false;
         }
     }
+    
+    function update_account( $password, $name, $phone, $address) {
+        global $db;
+        //$password = password_hash($password, PASSWORD_BCRYPT);
+        $username = $db->real_escape_string(get_username());
+        $name = $db->real_escape_string($name);
+        $phone = $db->real_escape_string($phone);
+        $address = $db->real_escape_string($address);
+        //$password = $db->real_escape_string($password);
+        $update_query = "UPDATE Pilot SET " .
+               "name='" . $name . "', " .
+               "phone='" . $phone . "', " . 
+               "address='" . $address . "' " .
+               "WHERE username='" . $username .   "'";
+               
+        if ($db->query($update_query) > 0) {
+               return true;
+        } else {
+               echo "update failed: (" . $db->errno . ") " .$db->error;
+               return false;
+        }
+    }
 
 ?>
