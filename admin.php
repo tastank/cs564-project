@@ -69,8 +69,8 @@ User: <select name="pilot"><?php echo $user_dropdown?></select>
 <form method="POST" action="aircraftrecords.php">
 Aircraft: <select name="aircraft"><?php echo $aircraft_dropdown?></select><br />
 Hourly rental cost: <input type="text" name="cost" /><br />
-<input type="submit" name="delete" value="DELETE THIS AIRPLANE" />
 <input type="submit" name="changerecord" value="Submit" />
+<input type="submit" name="delete" value="DELETE THIS AIRPLANE" />
 </form>
 
 
@@ -102,6 +102,7 @@ Registration number: <input type="text" name="reg_number" /><br />
 Type: <select name="type"><?php echo $type_dropdown ?></select><br />
 Hourly rental cost: <input type="text" name="cost" /><br />
 <input type="submit" name="addrecord" value="Add" />
+</form>
 
 <br />
 <!--Change type records -->
@@ -116,6 +117,31 @@ Hourly rental cost: <input type="text" name="cost" /><br />
 
 <h2> Change type records </h2>
 <?php
+    if (isset($_SESSION['type_change_msg'])) {
+        echo $_SESSION['type_change_msg'];
+        unset($_SESSION['type_change_msg']);
+    }
+    if (isset($_SESSION['type_change_err'])) {
+        echo $_SESSION['type_change_err'];
+        unset($_SESSION['type_change_err']);
+    }
+?>
+
+
+<form method="POST" action="typerecords.php">
+Type: <select name="type"><?php echo $type_dropdown ?></select><br />
+Manufacturer: <input type="text" name="manf" /><br />
+Number: <input type="text" name="number" /><br />
+Common name: <input type="text" name="common_name" /><br />
+Short name: <input type="text" name="short_name" /><br />
+<input type="submit" name="change" value="Submit" />
+<input type="submit" name="delete" value="DELETE THIS TYPE" />
+</form>
+<br />
+
+<h2> Add type records </h2>
+
+<?php
     if (isset($_SESSION['type_add_msg'])) {
         echo $_SESSION['type_add_msg'];
         unset($_SESSION['type_add_msg']);
@@ -126,15 +152,13 @@ Hourly rental cost: <input type="text" name="cost" /><br />
     }
 ?>
 
-
 <form method="POST" action="typerecords.php">
-Type: <select name="type"><?php echo $type_dropdown ?></select><br />
 Manufacturer: <input type="text" name="manf" /><br />
 Number: <input type="text" name="number" /><br />
-Common name: <input type="text" name="short_name" /><br />
+Common name: <input type="text" name="common_name" /><br />
 Short name: <input type="text" name="short_name" /><br />
-<input type="submit" name="delete" value="DELETE THIS TYPE" />
-<input type="submit" name="change" value="Submit" />
+<input type="submit" name="add" value="Submit" />
+</form>
 
 <?php
     page_footer();
