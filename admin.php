@@ -33,6 +33,16 @@
     ?>
 
 <h2> Authorize or deauthorize renters </h2>
+<?php
+    if (isset($_SESSION['auth_msg'])) {
+        echo $_SESSION['auth_msg'];
+        unset($_SESSION['auth_msg']);
+    }
+    if (isset($_SESSION['auth_err'])) {
+        echo $_SESSION['auth_err'];
+        unset($_SESSION['auth_err']);
+    }
+?>
 <form method="POST" action="auth.php">
 User: <select name="pilot"><?php echo $user_dropdown?></select>
 <span> Aircraft: </span><select name="aircraft"><?php echo $aircraft_dropdown?></select><br />
@@ -44,6 +54,16 @@ User: <select name="pilot"><?php echo $user_dropdown?></select>
 <br />
 <!--Change aircraft records -->
 <h2> Change aircraft records </h2>
+<?php
+    if (isset($_SESSION['record_msg'])) {
+        echo $_SESSION['record_msg'];
+        unset($_SESSION['record_msg']);
+    }
+    if (isset($_SESSION['record_err'])) {
+        echo $_SESSION['record_err'];
+        unset($_SESSION['record_err']);
+    }
+?>
 <form method="POST" action="aircraftrecords.php">
 Aircraft: <select name="aircraft"><?php echo $aircraft_dropdown?></select><br />
 Hourly rental cost: <input type="text" name="cost" /><br />
@@ -64,8 +84,19 @@ Hourly rental cost: <input type="text" name="cost" /><br />
 ?>
 
 <h2> Add aircraft records </h2>
+<?php
+    if (isset($_SESSION['add_msg'])) {
+        echo $_SESSION['add_msg'];
+        unset($_SESSION['add_msg']);
+    }
+    if (isset($_SESSION['add_err'])) {
+        echo $_SESSION['add_err'];
+        unset($_SESSION['add_err']);
+    }
+?>
+
 <form method="POST" action="aircraftrecords.php">
-Registration number: <input type="text" name="reg_numer" /><br />
+Registration number: <input type="text" name="reg_number" /><br />
 Type: <select name="type"><?php echo $type_dropdown ?></select><br />
 Hourly rental cost: <input type="text" name="cost" /><br />
 <input type="submit" name="addrecord" value="Add" />
