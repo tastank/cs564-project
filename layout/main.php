@@ -15,7 +15,7 @@
                     <li><a href="<?php echo SITE_ROOT ?>/register.php">Register</a></li>
                     <?php } else {
                         ?>
-                    <li><a href="">Account</a></li>
+                    <li><a href="<?php echo SITE_ROOT ?>/account.php">Account</a></li>
                     <li><a href="<?php echo SITE_ROOT ?>/logout.php">Log out</a></li>
                     <?php } 
                     if (is_admin()) {
