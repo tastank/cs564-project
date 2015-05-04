@@ -12,6 +12,7 @@
     page_header("Project root");
     print_menu();
 
+     
 //TODO: This is where administrator can modify accounts, authorize rentals,
 //  add or change aircraft records, and add or change type records
 
