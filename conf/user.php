@@ -152,4 +152,34 @@
         }
     }
 
+    function get_admins() {
+        global $db;
+        $username_query = "SELECT username FROM Pilot WHERE is_admin=TRUE";
+        $result = $db->query($username_query);
+        if ($result === false) {
+            return null;
+        }
+        $admins = array();
+        while ($row = $result->fetch_assoc()) {
+            array_push($admins, $row['username']);
+        }
+        return $admins;
+    }
+
+    function update_admin($username, $val) {
+        global $db;
+        $username = $db->real_escape_string($username);
+        $update_admin_query = "UPDATE Pilot SET is_admin=" . $val . " WHERE username='" . $username . "';";
+
+        return $db->query($update_admin_query);
+    }
+
+    function make_admin($username) {
+        return update_admin($username, "TRUE");
+    }
+
+    function remove_admin($username) {
+        return update_admin($username, "FALSE");
+    }
+
 ?>
