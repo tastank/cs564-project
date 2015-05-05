@@ -12,7 +12,6 @@
         }
     }
 
-    $_SESSION['type_change_msg'] = "";
     if (isset($_POST['change'])) {
         $tid = $_POST['type'];
         $error = false;
@@ -50,7 +49,9 @@
         $number = $_POST['number'];
         $common_name = $_POST['common_name'];
         $short_name = $_POST['short_name'];
-        if (add_type($manf, $number, $common_name, $short_name)) {
+        if ($manf == "" || $short_name == "" || ($number == "" && $common_name == "")) {
+            $_SESSION['type_add_err'] = "Types require a manufacturer, short name, and number or common name.";
+        } else if (add_type($manf, $number, $common_name, $short_name)) {
             $_SESSION['type_add_msg'] = "Addition successful";
         } else {
             $_SESSION['type_add_err'] = "Addition unsuccessful";
