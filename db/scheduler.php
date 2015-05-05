@@ -5,7 +5,7 @@
 		global $db;
 		$aircraftRegNums = array();
 		
-		$query = "SELECT Aircraft.reg_number";
+		$query = "SELECT Aircraft.reg_number, Aircraft.cost";
 		$query .= " FROM Aircraft, can_rent";
 		$query .= " WHERE (Aircraft.reg_number = can_rent.reg_number)";
 		$query .= " AND (can_rent.username ='".$username."');";

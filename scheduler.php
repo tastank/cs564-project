@@ -6,6 +6,7 @@ include_once(__DIR__."/conf.php");
 include_once(__DIR__."/layout/main.php");
 include_once(__DIR__."/layout/page.php");
 include_once(__DIR__."/db/scheduler.php");
+include_once(__DIR__."/db/aircraft.php");
 
 if (!is_logged_in()) {
     header('Location: '.SITE_ROOT.'/login.php');
@@ -72,7 +73,7 @@ $username = get_username();
 	
 	foreach($aircraftInfo as $apln){
 		$dropdownPlane .= '<option value="' .$apln->reg_number. '">';
-		$dropdownPlane .= $apln->reg_number. '</option>';
+		$dropdownPlane .= $apln->reg_number. ' (Cost: $' .  $apln->cost . '/hr)</option>';
 	}
 	
 	///////////////////////////////ECHO DROPDOWNS//////////////////////////////
