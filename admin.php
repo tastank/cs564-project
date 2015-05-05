@@ -35,11 +35,11 @@
 <h2> Authorize or deauthorize renters </h2>
 <?php
     if (isset($_SESSION['auth_msg'])) {
-        echo $_SESSION['auth_msg'];
+        print_notification($_SESSION['auth_msg']);
         unset($_SESSION['auth_msg']);
     }
     if (isset($_SESSION['auth_err'])) {
-        echo $_SESSION['auth_err'];
+        print_error( $_SESSION['auth_err']);
         unset($_SESSION['auth_err']);
     }
 ?>
@@ -57,11 +57,11 @@ User: <select name="pilot"><?php echo $user_dropdown?></select>
 
 <?php
     if (isset($_SESSION['aircraft_record_msg'])) {
-        echo $_SESSION['aircraft_record_msg'];
+        print_notification( $_SESSION['aircraft_record_msg']);
         unset($_SESSION['aircraft_record_msg']);
     }
     if (isset($_SESSION['aircraft_record_err'])) {
-        echo $_SESSION['aircraft_record_err'];
+        print_error( $_SESSION['aircraft_record_err']);
         unset($_SESSION['aircraft_record_err']);
     }
 ?>
@@ -88,11 +88,11 @@ Hourly rental cost: <input type="text" name="cost" /><br />
 <h2> Add aircraft records </h2>
 <?php
     if (isset($_SESSION['aircraft_add_msg'])) {
-        echo $_SESSION['aircraft_add_msg'];
+        print_notification( $_SESSION['aircraft_add_msg']);
         unset($_SESSION['aircraft_add_msg']);
     }
     if (isset($_SESSION['aircraft_add_err'])) {
-        echo $_SESSION['aircraft_add_err'];
+        print_error( $_SESSION['aircraft_add_err']);
         unset($_SESSION['aircraft_add_err']);
     }
 ?>
@@ -118,11 +118,11 @@ Hourly rental cost: <input type="text" name="cost" /><br />
 <h2> Change type records </h2>
 <?php
     if (isset($_SESSION['type_change_msg'])) {
-        echo $_SESSION['type_change_msg'];
+        print_notification( $_SESSION['type_change_msg']);
         unset($_SESSION['type_change_msg']);
     }
     if (isset($_SESSION['type_change_err'])) {
-        echo $_SESSION['type_change_err'];
+        print_error( $_SESSION['type_change_err']);
         unset($_SESSION['type_change_err']);
     }
 ?>
@@ -143,11 +143,11 @@ Short name: <input type="text" name="short_name" /><br />
 
 <?php
     if (isset($_SESSION['type_add_msg'])) {
-        echo $_SESSION['type_add_msg'];
+        print_notification( $_SESSION['type_add_msg']);
         unset($_SESSION['type_add_msg']);
     }
     if (isset($_SESSION['type_add_err'])) {
-        echo $_SESSION['type_add_err'];
+        print_error( $_SESSION['type_add_err']);
         unset($_SESSION['type_add_err']);
     }
 ?>
@@ -157,6 +157,31 @@ Manufacturer: <input type="text" name="manf" /><br />
 Number: <input type="text" name="number" /><br />
 Common name: <input type="text" name="common_name" /><br />
 Short name: <input type="text" name="short_name" /><br />
+<input type="submit" name="add" value="Submit" />
+</form>
+
+<h2> Change admins </h2>
+
+<?php
+    if (isset($_SESSION['admin_chg_msg'])) {
+        print_notification( $_SESSION['admin_chg_msg']);
+        unset($_SESSION['admin_chg_msg']);
+    }
+    if (isset($_SESSION['admin_chg_err'])) {
+        print_error( $_SESSION['admin_chg_err']);
+        unset($_SESSION['admin_chg_err']);
+    }
+    printf("Current administrators:<br />");
+    foreach (get_admins() as $admin) {
+        printf(" $admin<br />");
+    }
+    printf("<br />");
+?>
+
+<form method="POST" action="makeadmin.php">
+User: <select name="user"><?php echo $user_dropdown?></select><br />
+<input type="radio" name="admin_val" value="promote" />Make admin<br />
+<input type="radio" name="admin_val" value="demote" />Remove admin<br />
 <input type="submit" name="add" value="Submit" />
 </form>
 
