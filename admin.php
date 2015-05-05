@@ -9,7 +9,7 @@
         header('Location: '.SITE_ROOT.'/index.php');
     }
 
-    page_header("Project root");
+    page_header("Administration");
     print_menu();
 
      
