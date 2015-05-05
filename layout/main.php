@@ -27,4 +27,12 @@
         <?php
     }
 
+    function print_notification($string) {
+        printf('<div class="notification">' . $string . '</div>');
+    }
+
+    function print_error($string) {
+        printf('<div class="error">' . $string . '</div>');
+    }
+
 ?>
