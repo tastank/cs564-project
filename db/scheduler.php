@@ -24,8 +24,9 @@
 	function get_reservation_information(){
 		global $db;
 		$reservationInfo = array();
-		$query = "SELECT reg_number, username, start, end";
-		$query .= " FROM Rental ORDER BY start;";
+		$query = "SELECT reg_number, name, start, end";
+		$query .= " FROM Rental, Pilot";
+		$query .= " WHERE Pilot.username = Rental.username;";
 		
 		if($result = $db->query($query)){
 			$tempArray = array();
